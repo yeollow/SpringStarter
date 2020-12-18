@@ -27,10 +27,9 @@ public class HelloControllerTest {
     public void returnTestHelloSpring() throws Exception {
         String hello = "hello Spring!";
 
-        mvc.perform(get("/hello"))                          //MockMvc를 통해 /hello주소로 HTTP GET을 요청
+        mvc.perform(get("/hello").param("hello",hello))                          //MockMvc를 통해 /hello주소로 HTTP GET을 요청
                 .andExpect(status().isOk())                 //mvc.perform의 결과를 검증 - GET요청의 HTTP Header의 Status를 200인지 아닌지 확인 (HTTP Status code 반환)
-                .andExpect((ResultMatcher) content().string(hello));        //mvc.perform의 결과를 검증 - Controller에서 "hello Spring!"return값을 반환하는지 확인
-//        ResultMatcher로 Casting하면 cast할 수 없다고 뜨고, cast를 안하면 빨간줄이;
+                .andExpect(jsonPath("$.hello",is(hello)));        //mvc.perform의 결과를 검증 - Controller에서 "hello Spring!"return값을 반환하는지 확인
     }
 
     @Test
