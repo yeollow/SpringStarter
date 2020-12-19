@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -21,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class HelloControllerTest {
     //    Spring이 관리하는 Bean을 주입 받음
     @Autowired
-    private MockMvc mvc;        //web API(HTTP GET,POST 등)를 테스트할 때 사용
+    private MockMvc mvc;        //web API(HTTP GET,POST 등)를 테스트할 때 사용 - 내장 WAS(Tomcat)구동 안함
 
     @Test
     public void returnTestHelloSpring() throws Exception {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +18,6 @@ public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
-
 
     @After                  //JUnit에서 단위 테스트가 끝날때마다 수행되는 Method를 지정. @Before도 같은 의미
     public void cleanuUp() {
@@ -42,5 +42,24 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void registerBaseTimeEntity() {
+        LocalDateTime now = LocalDateTime.of(2020, 12, 19, 0, 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("Spring")
+                .content("testCode")
+                .author("yeollow")
+                .build());
+
+        List<Posts> postsList = postsRepository.findAll();
+
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }

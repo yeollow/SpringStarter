@@ -19,6 +19,7 @@ public class PostsSaveRequestDto {
         this.author = author;
     }
 
+//    save할 entity를 생성하여 반환
     public Posts toEntity() {
         return Posts.builder()
                 .title(title)

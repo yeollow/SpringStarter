@@ -17,6 +17,7 @@ public class HelloController {
 
     @GetMapping("/hello/dto")
 //    @RequestParam - 외부에서 API로 넘긴 parameter를 가져오는 Annotation. name이란 이름으로 외부에서 넘긴 parameter를 String name에 저장하겠다는 의미.
+//    즉, GET방식으로 넘어온 URI의 queryString을 받기 적절.
     public HelloResponseDto helloDto(@RequestParam("name") String name, @RequestParam("amount") int amount) {
        return new HelloResponseDto(name, amount);
 //       GET방식에서 queryString으로 name과 amount에 대한 값을 제공해줘야 함.
