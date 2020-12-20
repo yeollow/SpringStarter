@@ -15,7 +15,7 @@
 ``` 
 
 > Spring Boot version 확인 - build.gradle에서 springBootVersion을 확인 (2.1.X.RELEASE)
-> >```
+```
 buildscript {
     ext {
         springBootVersion = '2.1.7.RELEASE'
@@ -29,5 +29,5 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-> >```
+```
 
