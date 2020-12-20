@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequiredArgsConstructor
 @Controller
 public class IndexController {              //page에 관련된 Controller
-
     private final PostsService postsService;
 
     //    mustache starter dependency 덕분에 문자열을 반환할 때 기본적으로 resources/templates에서 반환하는 문자열(여기서는 index).mustache로 view resolver가 처리함.
@@ -31,8 +30,7 @@ public class IndexController {              //page에 관련된 Controller
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
-        PostsResponseDto dto = postsService.findById(id);
-        model.addAttribute("post", dto);
+        model.addAttribute("post", postsService.findById(id));
 
         return "posts-update";
     }

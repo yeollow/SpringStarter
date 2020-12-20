@@ -43,7 +43,8 @@ public class Posts extends BaseTimeEntity  {        //BaseTimeEntity를 상속�
     /*
     * Controller로 update에 관한 req가 오면, Controller에서 Service를 통해 update method를 부름
     * Service에 update method에서는 update에 관해 정의된 DTO를 통해 update할 항목들을 Posts Entity class의 instance를 제공받아 Posts의 update method를 실행 -> Dirty Checking
-    * */
+    *
+    */
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
