@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">0</div>
+<div class="counter">1</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.380s</div>
+<div class="counter">0.231s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox success" id="successRate">
-<div class="percent">100%</div>
+<div class="infoBox failures" id="successRate">
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,13 +61,147 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Tests</a>
+<a href="#tab0">Failed tests</a>
 </li>
 <li>
-<a href="#tab1">Standard output</a>
+<a href="#tab1">Tests</a>
+</li>
+<li>
+<a href="#tab2">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
+<h2>Failed tests</h2>
+<div class="test">
+<a name="loadIndexMustache"></a>
+<h3 class="failures">loadIndexMustache</h3>
+<span class="code">
+<pre>java.lang.AssertionError: 
+Expecting:
+ &lt;&quot;&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot;
+          content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;!--
+제이쿼리, 부트스트랩 등 프론트엔드 라이브러리를 사용하는 2가지 방법
+    1. 외부 CDN을 사용 - CDN을 서비스하는 곳에 문제가 생기면 덩달아 문제가 생김..
+    2. 직접 라이브러리를 받아 사용하는 방법
+ --&gt;
+
+&lt;!--  모든 mustache파일에 부트스트랩과 제이쿼리가 필요하기 때문에, header와 footer로 미리 정의해놓음  --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css&quot;&gt;
+    &lt;title&gt;yeollowSpringBootWebService&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Yeol's Board Web Service&lt;/h1&gt;
+
+&lt;div class=&quot;col-md-12&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+            &lt;a href=&quot;/posts/save&quot; role=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;글 등록&lt;/a&gt;
+                                           &lt;!-- mustache에서는 해당 값이 존재하지 않는 경우에는 ^를 사용 --&gt;
+                &lt;!-- Spring Security에서 기본적으로 제공하는 Login URL : /oauth2/authorization/... --&gt;
+                &lt;a href=&quot;/oauth2/authorization/google&quot; class=&quot;btn btn-success active&quot; role=&quot;button&quot;&gt;Google Login&lt;/a&gt;
+                &lt;a href=&quot;/oauth2/authorization/naver&quot; class=&quot;btn btn-secondary active&quot; role=&quot;button&quot;&gt;Naver Login&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;br&gt;
+
+    &lt;!-- 목록 출력 영역 --&gt;
+    &lt;table class=&quot;table table-horizontal table-bordered&quot;&gt;
+        &lt;thead class=&quot;thead-strong&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;게시글번호&lt;/th&gt;
+            &lt;th&gt;제목&lt;/th&gt;
+            &lt;th&gt;작성자&lt;/th&gt;
+            &lt;th&gt;최종수정일&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+
+        &lt;tbody id=&quot;tbody&quot;&gt;
+                &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!--index.js 추가--&gt;
+&lt;script src=&quot;/js/app/index.js&quot;&gt;&lt;/script&gt;
+
+&lt;!--
+페이지 로딩 속도를 높이기 위해 css는 header에, js는 footer에 둠.
+js의 용량이 너무 커 head가 다 불러지지 않으면 body부분의 실행이 늦어지기 때문.
+--&gt;
+&lt;/body&gt;
+&lt;/html&gt;&quot;&gt;
+to contain:
+ &lt;&quot;hello&quot;&gt; 
+	at com.yeollow.springboot.IndexComtrollerTest.loadIndexMustache(IndexComtrollerTest.java:22)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:106)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:66)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:117)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:155)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:137)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</pre>
+</span>
+</div>
+</div>
+<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -78,41 +212,21 @@
 </tr>
 </thead>
 <tr>
-<td class="success">loadIndexMustache</td>
-<td class="success">0.380s</td>
-<td class="success">passed</td>
+<td class="failures">loadIndexMustache</td>
+<td class="failures">0.231s</td>
+<td class="failures">failed</td>
 </tr>
 </table>
 </div>
-<div id="tab1" class="tab">
+<div id="tab2" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>00:57:30.291 [Test worker] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.300 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-00:57:30.309 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-00:57:30.328 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.yeollow.springboot.IndexComtrollerTest] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-00:57:30.342 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.yeollow.springboot.IndexComtrollerTest], using SpringBootContextLoader
-00:57:30.346 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.yeollow.springboot.IndexComtrollerTest]: class path resource [com/yeollow/springboot/IndexComtrollerTest-context.xml] does not exist
-00:57:30.347 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [com.yeollow.springboot.IndexComtrollerTest]: class path resource [com/yeollow/springboot/IndexComtrollerTestContext.groovy] does not exist
-00:57:30.347 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.yeollow.springboot.IndexComtrollerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-00:57:30.348 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.yeollow.springboot.IndexComtrollerTest]: IndexComtrollerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-00:57:30.397 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.483 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\ljy27\IdeaProjects\springBoot-webService\build\classes\java\main\com\yeollow\springboot\Application.class]
-00:57:30.484 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.yeollow.springboot.Application for test class com.yeollow.springboot.IndexComtrollerTest
-00:57:30.595 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [com.yeollow.springboot.IndexComtrollerTest]: using defaults.
-00:57:30.596 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-00:57:30.617 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@19ee16bb, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@273e1ffb, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@730f4e95, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5cce45af, org.springframework.test.context.support.DirtiesContextTestExecutionListener@357ccb43, org.springframework.test.context.transaction.TransactionalTestExecutionListener@62eacbd0, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6b985afe, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@45d5891f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@16206435, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@22a0996a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@b46786a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@62b2856c]
-00:57:30.620 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.620 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.624 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.625 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.625 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.625 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.630 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4b8155db testClass = IndexComtrollerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1c2d99b7 testClass = IndexComtrollerTest, locations = '{}', classes = '{class com.yeollow.springboot.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4a9ecb28, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7a0c710e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@29f6bf21, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@247af62e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; false]], class annotated with @DirtiesContext [false] with mode [null].
-00:57:30.630 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.631 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.yeollow.springboot.IndexComtrollerTest]
-00:57:30.636 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@4b8155db testClass = IndexComtrollerTest, testInstance = com.yeollow.springboot.IndexComtrollerTest@76d601b, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1c2d99b7 testClass = IndexComtrollerTest, locations = '{}', classes = '{class com.yeollow.springboot.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4a9ecb28, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7a0c710e, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@29f6bf21, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@247af62e], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; false]]].
-00:57:30.657 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}
+<pre>2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.yeollow.springboot.IndexComtrollerTest], using SpringBootContextLoader
+2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.yeollow.springboot.IndexComtrollerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.yeollow.springboot.IndexComtrollerTest]: IndexComtrollerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.yeollow.springboot.Application for test class com.yeollow.springboot.IndexComtrollerTest
+2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2020-12-21 17:13:06.186  INFO 5800 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5ff64bf7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@13f8ef2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@43e7b881, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@46ec5818, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2b281ac1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@569d5948, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2840c0aa, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@cc86122, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@67dd8c68, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@5b36dec2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@75dd009e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@3a53ae76]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -122,39 +236,42 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.7.RELEASE)
 
-2020-12-20 00:57:30.981  INFO 17700 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : Starting IndexComtrollerTest on yeollow with PID 17700 (started by ljy27 in C:\Users\ljy27\IdeaProjects\springBoot-webService)
-2020-12-20 00:57:30.982  INFO 17700 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : No active profile set, falling back to default profiles: default
-2020-12-20 00:57:31.745  INFO 17700 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
-2020-12-20 00:57:31.831  INFO 17700 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76ms. Found 1 repository interfaces.
-2020-12-20 00:57:32.239  INFO 17700 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$afd004db] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-20 00:57:32.691  INFO 17700 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2020-12-20 00:57:32.729  INFO 17700 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-12-20 00:57:32.729  INFO 17700 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
-2020-12-20 00:57:32.951  INFO 17700 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-12-20 00:57:32.951  INFO 17700 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1946 ms
-2020-12-20 00:57:33.288  INFO 17700 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-12-20 00:57:33.514  INFO 17700 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-12-20 00:57:33.635  INFO 17700 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+2020-12-21 17:13:06.259  INFO 5800 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : Starting IndexComtrollerTest on yeollow with PID 5800 (started by ljy27 in C:\Users\ljy27\IdeaProjects\springBoot-webService)
+2020-12-21 17:13:06.259  INFO 5800 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : The following profiles are active: oauth
+2020-12-21 17:13:06.511  INFO 5800 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-12-21 17:13:06.551  INFO 5800 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40ms. Found 2 repository interfaces.
+2020-12-21 17:13:06.670  INFO 5800 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bf7f5319] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-21 17:13:06.983  INFO 5800 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2020-12-21 17:13:07.015  INFO 5800 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-12-21 17:13:07.015  INFO 5800 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2020-12-21 17:13:07.227  INFO 5800 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-21 17:13:07.227  INFO 5800 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 968 ms
+2020-12-21 17:13:07.434  INFO 5800 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-12-21 17:13:07.434  INFO 5800 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-12-21 17:13:07.481  INFO 5800 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
 	name: default
 	...]
-2020-12-20 00:57:33.741  INFO 17700 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
-2020-12-20 00:57:33.744  INFO 17700 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
-2020-12-20 00:57:33.969  INFO 17700 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
-2020-12-20 00:57:34.210  INFO 17700 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-12-21 17:13:07.497  INFO 5800 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
 Hibernate: drop table posts if exists
+Hibernate: drop table user if exists
 Hibernate: drop sequence if exists hibernate_sequence
 Hibernate: create sequence hibernate_sequence start with 1 increment by 1
 Hibernate: create table posts (id bigint not null, created_date timestamp, modified_date timestamp, author varchar(255), content TEXT not null, title varchar(500) not null, primary key (id))
-2020-12-20 00:57:35.112  INFO 17700 --- [    Test worker] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@386d9665'
-2020-12-20 00:57:35.117  INFO 17700 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-20 00:57:36.029  INFO 17700 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-20 00:57:36.143  WARN 17700 --- [    Test worker] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-20 00:57:36.204  INFO 17700 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-12-20 00:57:36.732  INFO 17700 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 13625 (http) with context path ''
-2020-12-20 00:57:36.736  INFO 17700 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : Started IndexComtrollerTest in 6.075 seconds (JVM running for 7.411)
-2020-12-20 00:57:36.963  INFO 17700 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-20 00:57:36.963  INFO 17700 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-12-20 00:57:36.990  INFO 17700 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 27 ms
+Hibernate: create table user (id bigint generated by default as identity, created_date timestamp, modified_date timestamp, email varchar(255) not null, name varchar(255) not null, picture varchar(255), role varchar(255) not null, primary key (id))
+2020-12-21 17:13:07.550  INFO 5800 --- [    Test worker] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@322d5359'
+2020-12-21 17:13:07.550  INFO 5800 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-21 17:13:07.930  INFO 5800 --- [    Test worker] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-12-21 17:13:08.097  INFO 5800 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e0af333, org.springframework.security.web.context.SecurityContextPersistenceFilter@626e9b0, org.springframework.security.web.header.HeaderWriterFilter@3dda532c, org.springframework.security.web.authentication.logout.LogoutFilter@27be28db, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@4cda8479, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@3461f82b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@16e438de, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@d0efd66, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@283f5bd2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47132eca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@156f59f2, org.springframework.security.web.session.SessionManagementFilter@536048ce, org.springframework.security.web.access.ExceptionTranslationFilter@5ade9d23, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48c170c4]
+2020-12-21 17:13:08.309  INFO 5800 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-21 17:13:08.319  WARN 5800 --- [    Test worker] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-21 17:13:08.349  INFO 5800 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-12-21 17:13:08.633  INFO 5800 --- [    Test worker] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2020-12-21 17:13:08.653  INFO 5800 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9527 (http) with context path ''
+2020-12-21 17:13:08.653  INFO 5800 --- [    Test worker] c.y.springboot.IndexComtrollerTest       : Started IndexComtrollerTest in 2.467 seconds (JVM running for 12.105)
+2020-12-21 17:13:08.754  INFO 5800 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-21 17:13:08.754  INFO 5800 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-12-21 17:13:08.770  INFO 5800 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+Hibernate: select posts0_.id as id1_0_, posts0_.created_date as created_2_0_, posts0_.modified_date as modified3_0_, posts0_.author as author4_0_, posts0_.content as content5_0_, posts0_.title as title6_0_ from posts posts0_ order by posts0_.id DESC
 </pre>
 </span>
 </div>
@@ -166,7 +283,7 @@ Hibernate: create table posts (id bigint not null, created_date timestamp, modif
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.10.2</a> at 2020. 12. 20. 오전 12:57:37</p>
+<a href="http://www.gradle.org">Gradle 4.10.2</a> at 2020. 12. 21. 오후 5:13:09</p>
 </div>
 </div>
 </body>

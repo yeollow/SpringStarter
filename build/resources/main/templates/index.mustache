@@ -1,11 +1,21 @@
 {{>layout/header}}
 
-<h1>Yeollow web Service</h1>
+<h1>Yeol's Board Web Service</h1>
 
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            {{#userName}}               <!-- IndexController에서 전달된 userName  -->
+                Logged in as: <span id="user">{{userName}}</span>
+                <!-- Spring Security에서 기본적으로 제공하는 Logout URL : /logout -->
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}                   <!-- mustache에서는 해당 값이 존재하지 않는 경우에는 ^를 사용 -->
+                <!-- Spring Security에서 기본적으로 제공하는 Login URL : /oauth2/authorization/... -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+            {{/userName}}
         </div>
     </div>
     <br>

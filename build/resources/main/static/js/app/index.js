@@ -3,6 +3,7 @@
 //main변수 안에서만 init, save, update, delete가 유효함
 
 var index = {
+
     init: function () {
         var _this = this;
         $('#btn-save').on('click', function () {

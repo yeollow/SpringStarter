@@ -23,7 +23,7 @@ public class User extends BaseTimeEntity {
 
     private String picture;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)            //JPA로 Database에 저장할 때 Enum 값을 어떤 형태로 저장할건지 선택 - 기본적으로는 int, 여기서는 String
     @Column(nullable = false)
     private Role role;
 
@@ -35,6 +35,7 @@ public class User extends BaseTimeEntity {
         this.role = role;
     }
 
+//    dirty checking을 위한 update method
     public User update(String name, String picture) {
         this.name = name;
         this.picture = picture;
