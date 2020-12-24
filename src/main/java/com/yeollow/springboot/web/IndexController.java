@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {              //page에 관련된 Controller
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     //    mustache starter dependency 덕분에 문자열을 반환할 때 기본적으로 resources/templates에서 반환하는 문자열(여기서는 index).mustache로 view resolver가 처리함.
     @GetMapping("/")
