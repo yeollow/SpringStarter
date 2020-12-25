@@ -31,7 +31,7 @@ buildscript {
 }
 ```
 
-#### EC2 Putty SSH 접속
+#### EC2 Putty SSH 접속 (EC2 보안 인바운드 SSH를 내IP로 변경)
 * putty.exe, puttygen.exe download
     *   puttygen.exe로 .pem을 .ppk로 변환
     *   .ppk를 putty의 Connection - SSH - Auth탭에서 등록
@@ -46,7 +46,7 @@ Host ServiceName
     User ec2-user
     IdentityFile ~/.ssh/.pem file
 ```
-##### 이후 ssh (config에 등록한 ServiceName) 으로 접속
+##### 이후 ssh (config에 등록한 ServiceName) 으로 접속 가능
 >   EC2 Server서버 생성 시 꼭 해야하는 설정
 > * JDK설치 (여기서는 Java 8)
 >   *  `sudo yum install -y java-1.8.0-openjdk-devel.x86_64` 
