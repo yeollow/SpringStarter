@@ -80,3 +80,9 @@ Host ServiceName
 >   ` mysql -u admin -p -h springboard-yeollow.cbgya6d49t4i.ap-northeast-2.rds.amazonaws.com`
 
 #### EC2 jar 배포   
+*   EC2에 project clone받기
+    *   `sudo yum install git`로 git설치 이후 프로젝트를 저장할 디렉토리 생성 후 `git clone`
+*   배포 script만들기
+    *   `git clone` 혹은 `git pull`을 통해 최신 버전의 프로젝트를 받음
+    *   Gradle이나 Maven을 통해 프로젝트 테스트와 빌드
+    *   EC2 Server에서 해당 프로젝트 실행 및 재실행
