@@ -126,4 +126,4 @@ Host ServiceName
 >  $REPOSITORY/$JAR_NAME 2>&1 &
 >``` 
 ##### 서버에 jar 배포 시 AWS EC2 domain (public DNS:8080)으로 접속 가능
-#####각 소셜 로그인을 위해 콘솔에서 승인된 도메인(DNS)와 승인된 리디렉션 URI를 등록(DNS:port/login/oauth/code/google, naver ...)
+##### 각 소셜 로그인을 위해 콘솔에서 승인된 도메인(DNS)와 승인된 리디렉션 URI를 등록(DNS:port/login/oauth/code/google, naver ...)
