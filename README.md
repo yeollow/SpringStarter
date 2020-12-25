@@ -30,6 +30,13 @@ buildscript {
     }
 }
 ```
+#### OAuth2 소셜 로그인
+* Google, Naver 등의 console에 프로젝트를 등록 후 OAuth client-id, secret을 발급
+    *   application-oauth.properties file 생성 이후 client-id, client-secret 등을 spring-security 등록
+    *   각 console에 승인된 URL, Redirection URL을 입력
+    *   spring-security dependency 추가
+        *   `compile('org.springframework.boot:spring-boot-starter-oauth2-client')`
+    
 
 #### EC2 Putty SSH 접속 (EC2 보안 인바운드 SSH를 내IP로 변경)
 * putty.exe, puttygen.exe download
@@ -71,4 +78,5 @@ Host ServiceName
 >   EC2에 MySql 설치 `sudo yum install mysql`
 >   이후 계정, 비밀번호, host주소를 사용해 RDS접속  \
 >   ` mysql -u admin -p -h springboard-yeollow.cbgya6d49t4i.ap-northeast-2.rds.amazonaws.com`
->   
+
+#### EC2 jar 배포   
