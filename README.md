@@ -82,7 +82,48 @@ Host ServiceName
 #### EC2 jar 배포   
 *   EC2에 project clone받기
     *   `sudo yum install git`로 git설치 이후 프로젝트를 저장할 디렉토리 생성 후 `git clone`
-*   배포 script만들기
+*   배포 script만들기 (deploy.sh -> chmod +x)
+    *   `#!/bin/bash`로 script파일 생성
+        *   `REPOSITORY=/home/ec2-user/app/dirName`
+        *   `PROJECT_NAME=projName` 으로 변수 설정
     *   `git clone` 혹은 `git pull`을 통해 최신 버전의 프로젝트를 받음
     *   Gradle이나 Maven을 통해 프로젝트 테스트와 빌드
     *   EC2 Server에서 해당 프로젝트 실행 및 재실행
+>   `git pull`로 최신 프로젝트를 받아오고, `./gradlew build`로 프로젝트를 빌드.
+>   *   `./gradlew build`에서 permission denied가 발생하면, `chmod +x ./gradlew`로 실행권한 부여
+>      build의 결과물인 jar파일을 REPOSITORY로 복사 
+>       *   `cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/` 
+>       *   `JAR_NAME=$(ls -tr $REPOSITORY | grep *.jar | tail -n 1)` 을 통해 tail으로 실행할 가장 최신의 jar파일을 찾음 
+>            *   spring-boot는 내장 Tomcat을 사용하여 jar파일만 있으면 바로 WAS를 실행할 수 있음 
+>            *   이를 일반적으로 `java -jar` 명령어를 사용하지만, 터미널 접속이 끊기면 Application도 같이 종료 됨 
+>            * 즉, 터미널을 종료해도 Application은 계속 구동될 수 있도록 nohup명령어를 사용 
+>   *   `nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &` 이후 외부 Security file 등록
+>       *   서버에 client-id와 client-secret을 갖고있게 하기 위해 local에서 생성했던 oauth.properties를 서버에도 생성
+>       *   application-oauth.properties를 사용하도록 script file(deploy.sh)을 수정
+>```
+>nohup java -jar \
+>    -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties \ 
+>        $REPOSITORY/$JAR_NAME 2>&1 &
+>``` 
+>   *   이후 RDS접근을 위한 설정
+>       *   project 설정 
+>           *   `compile("org.mariadb.jdbc:mariadb-java-client")` dependency 추가
+>           *   resources/application-real.properties등록
+>       *   EC2 설정
+>           *   oauth와 같이 application-real-db.properties생성
+>```           
+>spring.jpa.hibernate.ddl-auto=none
+>spring.datasource.url=jdbc:mariadb:RDS endpoint:port/database 이름
+>spring.datasource.username=db계정
+>spring.datasource.password=db게정 비밀번호
+>spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+> ```
+>   * 이후 application-real-db.properties를 사용하도록 script file(deploy.sh)을 수정
+>```
+>nohup java -jar \
+>  -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
+> -Dspring.profiles.active=real \
+>  $REPOSITORY/$JAR_NAME 2>&1 &
+>``` 
+##### 서버에 jar 배포 시 AWS EC2 domain (public DNS:8080)으로 접속 가능
+#####각 소셜 로그인을 위해 콘솔에서 승인된 도메인(DNS)와 승인된 리디렉션 URI를 등록(DNS:port/login/oauth/code/google, naver ...)
