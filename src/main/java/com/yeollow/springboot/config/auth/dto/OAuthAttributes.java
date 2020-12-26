@@ -24,7 +24,6 @@ public class OAuthAttributes {
         this.picture = picture;
     }
 
-
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
         if("naver".equals(registrationId)) {
             return ofNaver("id", attributes);
@@ -63,7 +62,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.GUEST)
+                .role(Role.USER)            //USER권한을 준다. GUEST입력 시 GUEST권한을 줌
                 .build();
     }
 }

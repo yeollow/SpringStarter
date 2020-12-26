@@ -77,9 +77,10 @@ Host ServiceName
     *   User는 RDS생성시 입력한 마스터 사용자 이름(기본 admin)
 >   EC2에 MySql 설치 `sudo yum install mysql`
 >   이후 계정, 비밀번호, host주소를 사용해 RDS접속  \
->   ` mysql -u admin -p -h springboard-yeollow.cbgya6d49t4i.ap-northeast-2.rds.amazonaws.com`
+>   `mysql -u yeollow -p -h springboard-yeollow.cbgya6d49t4i.ap-northeast-2.rds.amazonaws.com`
+`
 
-#### EC2 jar 배포   
+#### EC2 jar 배포 - deploy.sh 작성
 *   EC2에 project clone받기
     *   `sudo yum install git`로 git설치 이후 프로젝트를 저장할 디렉토리 생성 후 `git clone`
 *   배포 script만들기 (deploy.sh -> chmod +x)
@@ -121,9 +122,9 @@ Host ServiceName
 >   * 이후 application-real-db.properties를 사용하도록 script file(deploy.sh)을 수정
 >```
 >nohup java -jar \
->  -Dspring.config.location=classpath:/application.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
-> -Dspring.profiles.active=real \
->  $REPOSITORY/$JAR_NAME 2>&1 &
->``` 
+>   -Dspring.config.location=classpath:/application.properties, /home/ec2-user/app/application-oauth.properties, /home/ec2-user/app/application-real-db.properties \
+>  -Dspring.profiles.active=real \
+>   $REPOSITORY/$JAR_NAME 2>&1 &
+>```
 ##### 서버에 jar 배포 시 AWS EC2 domain (public DNS:8080)으로 접속 가능
 ##### 각 소셜 로그인을 위해 콘솔에서 승인된 도메인(DNS)와 승인된 리디렉션 URI를 등록(DNS:port/login/oauth/code/google, naver ...)

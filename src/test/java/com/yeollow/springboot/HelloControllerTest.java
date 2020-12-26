@@ -1,3 +1,4 @@
+/*
 package com.yeollow.springboot;
 
 import org.junit.Test;
@@ -43,3 +44,4 @@ public class HelloControllerTest {
 //        jsonPath - JSON 응답값을 field별로 검증할 수 있는 method. $를 기준으로 field명을 명시한다.
     }
 }
+*/

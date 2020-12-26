@@ -2,16 +2,13 @@ package com.yeollow.springboot.web;
 
 import com.yeollow.springboot.config.auth.LoginUser;
 import com.yeollow.springboot.config.auth.dto.SessionUser;
-import com.yeollow.springboot.domain.user.User;
 import com.yeollow.springboot.service.posts.PostsService;
-import com.yeollow.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
@@ -20,7 +17,7 @@ public class IndexController {              //page에 관련된 Controller
 
     //    mustache starter dependency 덕분에 문자열을 반환할 때 기본적으로 resources/templates에서 반환하는 문자열(여기서는 index).mustache로 view resolver가 처리함.
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {     //@LoginUser Annotation을 정으히ㅏ고 LoginUserArgumentResolver로 기능을 구현, WebConfig로 등록
+    public String index(Model model, @LoginUser SessionUser user) {     //@LoginUser Annotation을 정의하고 LoginUserArgumentResolver로 기능을 구현, WebConfig로 등록
 //        이제 @LoginUser Parameter Annotation을 적용하여 언제든지 Session정보를 가져올 수 있게 됨 - 기본적으로 Session은 WAS의 메모리에 저장되고 호출됨.
 //        즉, 내장 Tomcat처럼 Applicaion 실행 시 WAS가 실행되는 구조에서는 항상 Applicaion을 실행시키고 있어야 Session이 유지가 되고 재실행 시 초기화 됨.
 //          ->  톰캣마다 Session 동기화를 진행해야함

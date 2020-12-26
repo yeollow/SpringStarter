@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
-
     private final HttpSession httpSession;
 
     @Override
@@ -29,7 +28,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-//        parameter에 전달할 Sessino객체를 가져옴
+//        parameter에 전달할 Session객체를 가져옴
         return httpSession.getAttribute("user");
     }
 }
