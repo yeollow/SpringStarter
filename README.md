@@ -30,6 +30,8 @@ buildscript {
     }
 }
 ```
+<hr>
+
 #### OAuth2 소셜 로그인
 * Google, Naver 등의 console에 프로젝트를 등록 후 OAuth client-id, secret을 발급
     *   application-oauth.properties file 생성 이후 client-id, client-secret 등을 spring-security 등록
@@ -37,6 +39,7 @@ buildscript {
     *   spring-security dependency 추가
         *   `compile('org.springframework.boot:spring-boot-starter-oauth2-client')`
     
+<hr>
 
 #### EC2 Putty SSH 접속 (EC2 보안 인바운드 SSH를 내IP로 변경)
 * putty.exe, puttygen.exe download
@@ -53,6 +56,8 @@ Host ServiceName
     User ec2-user
     IdentityFile ~/.ssh/.pem file
 ```
+<hr>
+
 ##### 이후 ssh (config에 등록한 ServiceName) 으로 접속 가능
 >   EC2 Server서버 생성 시 꼭 해야하는 설정
 > * JDK설치 (여기서는 Java 8)
@@ -64,6 +69,8 @@ Host ServiceName
 > * hostName 변경(여러 서버 관리의 경우 IP만으로 서비스 파악이 힘듬)
 >   * `sudo vim /etc/sysconfig/network`를 열어 `HOSTNAME=원하는 이름`을 추가
 >   * `sudo vim /etc/hosts`에 127.0.0.1  등록한 원하는 Hostname을 등록
+
+<hr>
 
 #### EC2 RDS접근 확인
 *   RDS 인스턴스 생성 후 timeZone, character Set 변경
@@ -79,6 +86,7 @@ Host ServiceName
 >   이후 계정, 비밀번호, host주소를 사용해 RDS접속  \
 >   `mysql -u yeollow -p -h springboard-yeollow.cbgya6d49t4i.ap-northeast-2.rds.amazonaws.com`
 `
+<hr>
 
 #### EC2 jar 배포 - deploy.sh 작성
 *   EC2에 project clone받기
@@ -126,5 +134,35 @@ Host ServiceName
 >  -Dspring.profiles.active=real \
 >   $REPOSITORY/$JAR_NAME 2>&1 &
 >```
+
 ##### 서버에 jar 배포 시 AWS EC2 domain (public DNS:8080)으로 접속 가능
 ##### 각 소셜 로그인을 위해 콘솔에서 승인된 도메인(DNS)와 승인된 리디렉션 URI를 등록(DNS:port/login/oauth/code/google, naver ...)
+
+<hr>
+
+#### CI/CD
+*   Travis CI
+    *   프로젝트에서 .travis.yml생성
+    *   Travis CI와 AWS S3, CodeDeploy 연동
+        *   .travis.yml에서 정의한 branch에 push하면 자동으로 배포
+*   Jenkins
+    *   별도의 EC2 instance가 필요함.. 여기선 다루지 않음.
+    
+<hr>
+    
+#### 무중단 배포
+*   EC2 Server에 Nginx구축 후 SpringBoot Jar을 2대 사용
+    *   신규배포 시 Nginx랑 연결되지 않은 SpringBoot로 연결
+    *   이후 배포가 완료 되면 nginx reload
+        *   Nginx는 80,443 port
+        *   각 SpringBoot는 8081,8082 port
+>   Nginx 설치 : `sudo yum install nginx` \
+>   AWS EC2 인바운드 규칙에 80 port와 login redirection URL 추가 
+>   *   Nginx - SpringBoot 연동
+>       *   nginx.conf에서 server아래의 location / proxy_pass에 http://localhost:8080전달
+>       *   프로젝트에 8081l,8082포트를 할당할 properties 파일 작성
+>           *   기존 application.properties에 `server.port=portNum` 작성
+
+<hr>
+
+#### 배포 전체 구조
