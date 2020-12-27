@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class PostsApiController {
     private final PostsService postsService;
-
 //    등록/수정/조회 API를 생성하기 위해 총 3개의 Class가 필요함.
 //    1. API요청을 받을 Controller
 //    2. Request Data를 받을 DTO
