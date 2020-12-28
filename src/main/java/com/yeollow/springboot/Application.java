@@ -2,6 +2,7 @@ package com.yeollow.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 //@SpringBootApplication을 통해 SpringBoot의 자동설정, Bean읽기 및 생성 등 자동으로 설정 됨. but Annotation위치부터 설정을 읽어가기 때문에 항상 Project 최 상단에 위치해야함.
