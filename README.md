@@ -1,5 +1,5 @@
 # springStarter
-## AWS EC2 IPv4 DNS - http://ec2-54-180-199-32.ap-northeast-2.compute.amazonaws.com:8080/
+## [AWS EC2 IPv4 DNS](http://ec2-54-180-199-32.ap-northeast-2.compute.amazonaws.com:8080/) - 인스턴스 중지중..
 
 <hr>
 
